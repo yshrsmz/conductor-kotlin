@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+  compileSdkVersion 23
+  buildToolsVersion "23.0.3"
+
+  defaultConfig {
+    applicationId "net.yslibrary.conductorkotlin"
+    minSdkVersion 19
+    targetSdkVersion 23
+    versionCode 1
+    versionName "1.0"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+  }
+
+  dataBinding {
+    enabled = true
+  }
+}
+
+ext.support_lib_version = '23.4.0'
+dependencies {
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  compile "com.android.support:appcompat-v7:$support_lib_version"
+  compile "com.android.support:design:$support_lib_version"
+  compile "com.android.support:support-v4:$support_lib_version"
+  compile "com.android.support:recyclerview-v7:$support_lib_version"
+
+  compile 'com.bluelinelabs:conductor:1.1.6'
+  compile 'com.bluelinelabs:conductor-support:1.1.6'
+
+  kapt 'com.google.guava:guava:19.0'
+  kapt 'com.android.databinding:compiler:2.1.0'
+
+  compile 'com.google.dagger:dagger:2.4'
+  kapt 'com.google.dagger:dagger-compiler:2.4'
+  provided 'org.glassfish:javax.annotation:10.0-b28'
+
+  compile 'io.reactivex:rxjava:1.1.5'
+  compile 'io.reactivex:rxandroid:1.2.0'
+  compile 'io.reactivex:rxkotlin:0.55.0'
+
+  compile 'com.jakewharton.timber:timber:4.1.2'
+
+  testCompile 'junit:junit:4.12'
+}
+
+repositories {
+  mavenCentral()
+}
+
+kapt {
+  generateStubs = true
+}
